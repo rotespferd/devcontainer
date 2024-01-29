@@ -1,0 +1,9 @@
+steps:
+  build:
+    image: debian
+    commands:
+      - echo "Docker build"
+  push:
+    image: debian
+    commands:
+      - echo "Docker push"
