@@ -9,8 +9,6 @@ steps:
     image: docker
     commands:
       - docker build --build-arg PHP_VERSION=${PHP_VERSION} -t rotespferd/php:${PHP_VERSION} php
-    volumes:
-      - /var/run/docker.sock:/var/run/docker.sock
   push:
     image: debian
     commands:
