@@ -15,7 +15,7 @@ steps:
       dry-run: true
       output: type=oci,dest=${CI_REPO_OWNER}-php.tar
       build_args:
-        - <<: *PHP_VERSION
+        - PHP_VERSION: 8.2
   
   docker-push:
     image: debian
