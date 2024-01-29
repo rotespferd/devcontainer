@@ -5,11 +5,18 @@ matrix:
     - 8.3
 
 steps:
-  build:
-    image: docker
-    commands:
-      - docker build --build-arg PHP_VERSION=${PHP_VERSION} -t rotespferd/php:${PHP_VERSION} php
-  push:
+  docker-build:
+    image: woodpeckerci/plugin-docker-buildx
+    settings:
+      repo: codeberg.org/${CI_REPO_OWNER}/devcontainer
+      dockerfile: php/Dockerfile
+      tag: rotespferd/php:${PHP_VERSION}
+      registry: codeberg.org
+      dry-run: true
+      build_args:
+        - PHP_VERSION: ${PHP_VERSION}
+  
+  docker-push:
     image: debian
     commands:
       - echo "Docker push"
