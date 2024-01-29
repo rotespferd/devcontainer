@@ -8,11 +8,12 @@ steps:
   docker-build:
     image: woodpeckerci/plugin-docker-buildx
     settings:
-      repo: codeberg.org/${CI_REPO_OWNER}/devcontainer
+      repo: codeberg.org/${CI_REPO_OWNER}/devcontainer/php
       dockerfile: php/Dockerfile
-      tag: rotespferd/php:${PHP_VERSION}
+      tag: ${PHP_VERSION}
       registry: codeberg.org
       dry-run: true
+      output: type=oci,dest=${CI_REPO_OWNER}-php.tar
       build_args:
         - PHP_VERSION: ${PHP_VERSION}
   
