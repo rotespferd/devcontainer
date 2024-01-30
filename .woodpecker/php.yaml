@@ -1,22 +1,22 @@
 matrix:
-  PHP_VERSION: &PHP_VERSION
+  PHP_VERSION:
     - 8.1
     - 8.2
     - 8.3
 
 steps:
   docker-build:
-    image: plugins/kaniko
+    image: woodpeckerci/plugin-docker-buildx
     settings:
-      dry-run: true
       repo: codeberg.org/${CI_REPO_OWNER}/devcontainer/php
-      tags: ${PHP_VERSION},v1-${CI_COMMIT_SHA:0:8}
       dockerfile: php/Dockerfile
-      username:
-        from_secret: docker_username
-      password:
-        from_secret: docker_password
-
+      tag: ${PHP_VERSION}
+      registry: codeberg.org
+      dry-run: true
+      build_args_from_env:
+        - PHP_VERSION
+      output: type=oci,dest=${CI_REPO_OWNER}-php.tar
+  
   docker-push:
     image: debian
     commands:
