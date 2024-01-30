@@ -6,17 +6,17 @@ matrix:
 
 steps:
   docker-build:
-    image: woodpeckerci/plugin-docker-buildx
+    image: plugins/kaniko
     settings:
-      repo: codeberg.org/${CI_REPO_OWNER}/devcontainer/php
-      dockerfile: php/Dockerfile
-      tag: ${PHP_VERSION}
-      registry: codeberg.org
       dry-run: true
-      output: type=oci,dest=${CI_REPO_OWNER}-php.tar
-      build_args:
-        - PHP_VERSION: 8.2
-  
+      repo: codeberg.org/${CI_REPO_OWNER}/devcontainer/php
+      tags: ${PHP_VERSION},v1-${CI_COMMIT_SHA:0:8}
+      dockerfile: php/Dockerfile
+      username:
+        from_secret: docker_username
+      password:
+        from_secret: docker_password
+
   docker-push:
     image: debian
     commands:
