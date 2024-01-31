@@ -13,6 +13,11 @@ RUN dnf install -y https://rpms.remirepo.net/fedora/remi-release-$(rpm -E %fedor
     sudo dnf install -y php
 
 # Install Composer
+RUN php -r "copy('https://getcomposer.org/installer', 'composer-setup.php');" && \
+    php composer-setup.php && \
+    php -r "unlink('composer-setup.php');" && \
+    sudo mv composer.phar /usr/local/bin/composer
+
 
 # Define the entry point script
 ENTRYPOINT ["php", "-a"]
