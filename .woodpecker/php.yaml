@@ -22,7 +22,7 @@ steps:
     settings:
       repo: codeberg.org/${CI_REPO_OWNER}/devcontainer/php
       dockerfile: php/Dockerfile
-      tags: ${PHP_VERSION},v1-${CI_COMMIT_SHA:0:8}
+      tags: ${PHP_VERSION},${PHP_VERSION}-${CI_COMMIT_SHA:0:8}
       registry: codeberg.org
       dry-run: false
       username: ${CI_REPO_OWNER}
