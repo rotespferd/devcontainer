@@ -1,0 +1,31 @@
+matrix:
+  FEDORA_VERSION:
+    - 38
+    - 39
+
+steps:
+  docker-build:
+    image: woodpeckerci/plugin-docker-buildx
+    settings:
+      repo: codeberg.org/${CI_REPO_OWNER}/devcontainer/base
+      dockerfile: base/Dockerfile
+      tag: ${FEDORA_VERSION}
+      registry: codeberg.org
+      dry-run: true
+      build_args_from_env:
+        - FEDORA_VERSION
+      output: type=oci,dest=${CI_REPO_OWNER}-php.tar
+  
+  docker-push:
+    image: woodpeckerci/plugin-docker-buildx
+    settings:
+      repo: codeberg.org/${CI_REPO_OWNER}/devcontainer/base
+      dockerfile: base/Dockerfile
+      tags: ${FEDORA_VERSION},${FEDORA_VERSION}-${CI_COMMIT_SHA:0:8}
+      registry: codeberg.org
+      dry-run: false
+      username: ${CI_REPO_OWNER}
+      password:
+        from_secret: docker_password
+      build_args_from_env:
+        - FEDORA_VERSION
