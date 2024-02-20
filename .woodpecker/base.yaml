@@ -4,7 +4,8 @@ matrix:
     - 39
 
 when:
-  - path:
+  - event: [push, pull_request] 
+    path:
       include: ['.woodpecker/base.yaml', 'base/**']
 
 steps:
