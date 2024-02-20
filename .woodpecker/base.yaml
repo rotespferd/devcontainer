@@ -1,12 +1,11 @@
+when:
+  path:
+    include: ['.woodpecker/base.yaml', 'base/**']
+
 matrix:
   FEDORA_VERSION:
     - 38
     - 39
-
-when:
-  - event: [push, pull_request] 
-    path:
-      include: ['.woodpecker/base.yaml', 'base/**']
 
 steps:
   docker-build:
