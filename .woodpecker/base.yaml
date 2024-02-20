@@ -3,6 +3,10 @@ matrix:
     - 38
     - 39
 
+when:
+  - path:
+      include: ['.woodpecker/base.yaml', 'base/**']
+
 steps:
   docker-build:
     image: woodpeckerci/plugin-docker-buildx
