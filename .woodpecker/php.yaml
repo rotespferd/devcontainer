@@ -1,6 +1,7 @@
 when:
-  path:
-    include: ['.woodpecker/php.yaml', 'php/**']
+  - path:
+      include: ['.woodpecker/php.yaml', 'php/**']
+  - event: cron
 
 matrix:
   PHP_VERSION:
