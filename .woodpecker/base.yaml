@@ -1,3 +1,8 @@
+when:
+  - path:
+      include: ['.woodpecker/base.yaml', 'base/**']
+  - event: cron
+
 matrix:
   FEDORA_VERSION:
     - 38
