@@ -35,6 +35,5 @@ steps:
       build_args_from_env:
         - FEDORA_VERSION
     when:
-      - event: [push, tag, deployment, release]
+      - event: [push, tag, deployment, release, cron]
         branch: main
-      - event: cron
