@@ -34,3 +34,7 @@ steps:
         from_secret: docker_password
       build_args_from_env:
         - FEDORA_VERSION
+    when:
+      - event: [push, tag, deployment, release]
+        branch: main
+      - event: cron
