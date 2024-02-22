@@ -36,5 +36,6 @@ steps:
       build_args_from_env:
         - PHP_VERSION
     when:
-      - event: [push, tag, deployment, release, cron]
+      - event: push
         branch: main
+      - event: [tag, deployment, release, cron]
