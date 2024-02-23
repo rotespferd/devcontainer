@@ -1,4 +1,7 @@
-FROM fedora:39
+# Argument for specifying the PHP version
+ARG FEDORA_VERSION
+
+FROM fedora:${FEDORA_VERSION}
 
 RUN dnf -y update
 
