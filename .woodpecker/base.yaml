@@ -7,6 +7,12 @@ matrix:
   FEDORA_VERSION:
     - 38
     - 39
+  platform:
+    - linux/amd64
+    - linux/arm64
+
+labels:
+  platform: ${platform}
 
 steps:
   docker-build:
