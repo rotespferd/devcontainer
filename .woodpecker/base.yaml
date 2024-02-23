@@ -37,4 +37,4 @@ steps:
     when:
       - event: push
         branch: main
-      - event: [tag, deployment, release, cron]
+      - event: cron
