@@ -8,6 +8,12 @@ matrix:
     - 8.1
     - 8.2
     - 8.3
+  platform:
+    - linux/amd64
+    - linux/arm64
+
+labels:
+  platform: ${platform}
 
 steps:
   docker-build:
