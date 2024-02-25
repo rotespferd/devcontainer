@@ -73,7 +73,7 @@ jobs:
         with:
           images: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}
           tags: |
-            type=raw,version=${{ matrix.fedora_version }}
+            type=raw,value=${{ matrix.fedora_version }}
             type=schedule
             type=sha
 
