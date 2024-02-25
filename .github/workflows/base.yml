@@ -19,11 +19,15 @@ env:
   # Use docker.io for Docker Hub if empty
   REGISTRY: ghcr.io
   # github.repository as <account>/<repo>
-  IMAGE_NAME: ${{ github.repository }}
+  IMAGE_NAME: ${{ github.repository }}/base
 
 
 jobs:
   build:
+
+    strategy:
+      matrix:
+        fedora_version: [38, 39]
 
     runs-on: ubuntu-latest
     permissions:
@@ -77,11 +81,11 @@ jobs:
         with:
           context: ./base
           push: ${{ github.event_name != 'pull_request' }}
-          tags: ${{ steps.meta.outputs.tags }}
+          tags: ${{ matrix.fedora_version }}
           labels: ${{ steps.meta.outputs.labels }}
           cache-from: type=gha
           cache-to: type=gha,mode=max
-          build-args: FEDORA_VERSION=39
+          build-args: FEDORA_VERSION=${{ matrix.fedora_version }}
           
 
       # Sign the resulting Docker image digest except on PRs.
