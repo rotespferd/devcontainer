@@ -1,5 +1,5 @@
 # Set the base image to Fedora
-FROM codeberg.org/rotespferd/devcontainer/base:39
+FROM ghcr.io/rotespferd/devcontainer/base:39
 
 # Argument for specifying the PHP version
 ARG PHP_VERSION
